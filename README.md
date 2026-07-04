@@ -84,7 +84,7 @@ MindPulseAI/
 1. Clone the repository
 
 ```bash
-git clone https://github.com/your-username/MindPulse-AI.git
+git clone https://github.com/keerty318/MindPulse-AI.git
 ```
 
 2. Navigate to the project folder
