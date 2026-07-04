@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MindPulse AI</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <link rel="icon" type="image/png" href="{{ url_for('static', filename='images/logo.png') }}">
+    <link rel="stylesheet"
+        href="{{ url_for('static', filename='bootstrap/bootstrap-5.3.8-dist/bootstrap-5.3.8-dist/css/bootstrap.min.css') }}">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet">
+
+</head>
+
+<body>
+    <!-- NAVBAR -->
+
+    <nav class="navbar navbar-expand-lg bg-white shadow-sm py-3">
+
+        <div class="container">
+
+            <!-- Logo -->
+
+            <a class="navbar-brand d-flex align-items-center" href="{{ url_for('home') }}">
+
+                <img src="{{ url_for('static', filename='images/logo.png') }}" alt="MindPulse AI" width="55" height="55"
+                    class="me-2">
+
+                <span class="fw-bold fs-3">
+                    MindPulse AI
+                </span>
+
+            </a>
+
+            <!-- Mobile Toggle -->
+
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#dashboardMenu">
+
+                <span class="navbar-toggler-icon"></span>
+
+            </button>
+
+            <!-- Menu -->
+
+            <div class="collapse navbar-collapse" id="dashboardMenu">
+
+                <!-- Center Links -->
+
+                <ul class="navbar-nav mx-auto">
+
+                    <li class="nav-item">
+
+                        <a class="nav-link px-3" href="{{ url_for('home') }}">
+
+                            Home
+
+                        </a>
+
+                    </li>
+
+                    <li class="nav-item">
+
+                        <a class="nav-link px-3" href="{{ url_for('dashboard') }}">
+
+                            Dashboard
+
+                        </a>
+
+                    </li>
+
+                    <li class="nav-item">
+
+                        <a class="nav-link px-3" href="{{ url_for('improvement') }}">
+
+                            Improvement
+
+                        </a>
+
+                    </li>
+
+                    <li class="nav-item">
+
+                        <a class="nav-link px-3" href="{{ url_for('ai_coach') }}">
+
+                            AI Coach
+
+                        </a>
+
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link px-3" href="{{ url_for('logout') }}">
+                            Logout
+                        </a>
+                    </li>
+
+                </ul>
+
+            </div>
+
+        </div>
+
+    </nav>
+
+
+    <!--  AI Coach Page  -->
+    <section class="aicoach">
+
+        <div class="coach-page">
+
+            <!-- Header -->
+
+            <div class="coach-header">
+
+                <h1><img src="{{ url_for('static', filename='images/logo.png') }}" alt="MindPulse AI" class="ai-logo">
+                    MindPulse AI Coach</h1>
+
+                <p>
+                    Personalized guidance based on your latest assessment.
+                </p>
+
+            </div>
+
+            <!-- Chat Container -->
+
+            <div class="chat-container" id="chat-container">
+
+                <!-- AI Welcome Message -->
+
+                <div class="message ai-message">
+
+                    <div class="avatar">
+                        🤖
+                    </div>
+
+                    <div class="message-content">
+
+                        <h4>MindPulse AI</h4>
+
+                        <p>
+                            Hello! 👋<br><br>
+
+                            I'm your AI Wellness Coach.
+
+                            I can help you improve your productivity,
+                            reduce burnout, build better study habits,
+                            and answer questions based on your assessment.
+
+                            <br><br>
+
+                            How can I help you today?
+                        </p>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+            <!-- Input -->
+
+            <div class="input-area">
+
+                <input type="text" id="user-input" placeholder="Ask MindPulse AI anything...">
+
+                <button id="send-btn">
+
+                    Send
+
+                </button>
+
+            </div>
+
+        </div>
+    </section>
+
+    <!-- THIS IS HERE SO THAT LLAMA RESPONSE IS STRUCTURED IN CHAT -->
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+
+
+    <script src="{{ url_for('static', filename='js/dashboard.js') }}"></script>
+
+
+    <script
+        src="{{ url_for('static', filename='bootstrap/bootstrap-5.3.8-dist/bootstrap-5.3.8-dist/js/bootstrap.bundle.min.js') }}"></script>
+
+
+</body>
+
+</html>

@@ -1,0 +1,711 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MindPulse AI</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <link rel="icon" type="image/png" href="{{ url_for('static', filename='images/logo.png') }}">
+    <link rel="stylesheet"
+        href="{{ url_for('static', filename='bootstrap/bootstrap-5.3.8-dist/bootstrap-5.3.8-dist/css/bootstrap.min.css') }}">
+</head>
+
+<body>
+
+    <!-- NAVBAR -->
+
+    <nav class="navbar navbar-expand-lg bg-white shadow-sm py-3">
+
+        <div class="container">
+
+            <!-- Logo -->
+
+            <a class="navbar-brand d-flex align-items-center" href="#">
+
+                <img src="{{ url_for('static', filename='images/logo.png') }}" alt="MindPulse AI" width="55" height="55"
+                    class="me-2">
+
+                <span class="fw-bold fs-3">
+                    MindPulse AI
+                </span>
+
+            </a>
+
+            <!-- Mobile Toggle -->
+
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#menu">
+
+                <span class="navbar-toggler-icon"></span>
+
+            </button>
+
+            <!-- Menu -->
+
+            <div class="collapse navbar-collapse" id="menu">
+
+                <!-- Center Links -->
+
+                <ul class="navbar-nav mx-auto">
+
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ url_for('home') }}">
+                            Home
+                        </a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link px-3" href="{{ url_for('home') }}#features">
+                            Features
+                        </a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link px-3" href="{{ url_for('assessment') }}">
+                            Assessment
+                        </a>
+                    </li>
+
+
+                </ul>
+
+                <!-- Right Buttons -->
+
+                <div class="d-flex">
+
+                    <a href="#" class="nav-login">
+
+                        Login
+
+                    </a>
+
+                    <a href="#" class="nav-signup ms-2">
+
+                        Sign Up
+
+                    </a>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </nav>
+
+
+
+
+
+    <!-- Assessment Form -->
+
+    <section class="assessment-section">
+
+
+        <div class="container text-center" class="assessment-header">
+
+            <h1>
+
+                Student Assessment
+
+            </h1>
+
+            <p>
+
+                Answer a few questions to help MindPulse AI
+                understand your productivity and wellness patterns.
+
+            </p>
+
+        </div>
+
+        <div class="container">
+
+            <form action="/predict" method="POST">
+
+                <!-- step 1 -->
+
+
+
+                <div id="step1">
+
+                    <div class="assessment-card">
+
+                        <h2 class="assessment-title">
+
+                            <span class="icon-personal">👤</span>
+
+                            <span class="title-text">
+
+                                Personal Information
+
+                            </span>
+
+                        </h2>
+
+                        <p class="assessment-subtitle">
+
+                            Tell us a little about yourself before we begin.
+
+                        </p>
+
+                        <!-- Age -->
+
+                        <div class="mb-4">
+
+                            <label class="form-label">
+
+                                Age
+
+                            </label>
+
+                            <input type="number" name="age" min="17" max="29" value="23"
+                                class="form-control custom-input">
+
+                        </div>
+
+                        <!-- Gender -->
+
+                        <div class="mb-4">
+
+                            <label class="form-label">
+
+                                Gender
+
+                            </label>
+
+                            <div class="radio-group">
+
+                                <div class="radio-item">
+
+                                    <input type="radio" id="female" name="gender" value="Female" checked>
+
+                                    <label for="female">
+
+                                        Female
+
+                                    </label>
+
+                                </div>
+
+                                <div class="radio-item">
+
+                                    <input type="radio" id="male" name="gender" value="Male">
+
+                                    <label for="male">
+
+                                        Male
+
+                                    </label>
+
+                                </div>
+
+                                <div class="radio-item">
+
+                                    <input type="radio" id="other" name="gender" value="Other">
+
+                                    <label for="other">
+
+                                        Other
+
+                                    </label>
+
+                                </div>
+
+                            </div>
+
+                        </div>
+
+                        <!-- Next Button -->
+
+                        <div class="text-end">
+
+                            <button type="button" class="next-btn" onclick="nextStep(1,2)">
+
+                                Next →
+
+                            </button>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <!-- step 2 -->
+                <div id="step2" style="display:none;">
+
+                    <div class="assessment-card">
+
+                        <h2 class="assessment-title">
+                            <span class="icon-academic">📚</span>
+
+                            <span class="title-text">
+
+                                Academic Performance
+
+                            </span>
+
+
+                        </h2>
+
+                        <p class="assessment-subtitle">
+
+                            Tell us about your study habits.
+
+                        </p>
+
+                        <!-- Study Hours -->
+
+                        <div class="mb-4">
+
+                            <label class="form-label">
+
+                                Study Hours Per Day
+
+                            </label>
+
+                            <div class="slider-value">
+
+                                <span id="studyValue">
+
+                                    5 Hours
+
+                                </span>
+
+                            </div>
+
+                            <input type="range" min="0.5" max="10" step="0.5" value="5" id="studyHours"
+                                name="study_hours" class="form-range">
+
+                        </div>
+
+                        <!-- Assignments -->
+
+                        <div class="mb-4">
+
+                            <label class="form-label">
+
+                                Assignments Completed
+
+                            </label>
+
+                            <input type="number" min="0" max="19" value="9" name="assignments_completed"
+                                class="form-control custom-input">
+
+                        </div>
+
+                        <!-- Attendance -->
+
+                        <div class="mb-4">
+
+                            <label class="form-label">
+
+                                Attendance Percentage
+
+                            </label>
+
+                            <div class="slider-value">
+
+                                <span id="attendanceValue">
+
+                                    70%
+
+                                </span>
+
+                            </div>
+
+                            <input type="range" min="40" max="100" value="70" id="attendance"
+                                name="attendance_percentage" class="form-range">
+
+                        </div>
+
+                        <!-- Grade -->
+
+                        <div class="mb-4">
+
+                            <label class="form-label">
+
+                                Previous Semester Performance
+
+                            </label>
+
+                            <select name="grade" class="form-select custom-input">
+
+                                <option>Poor</option>
+
+                                <option>Average</option>
+
+                                <option selected>Good</option>
+
+                                <option>Excellent</option>
+
+                            </select>
+
+                        </div>
+
+                        <div class="d-flex justify-content-between">
+
+                            <button type="button" class="prev-btn" onclick="nextStep(2,1)">
+
+                                ← Previous
+
+                            </button>
+
+                            <button type="button" class="next-btn" onclick="nextStep(2,3)">
+
+                                Next →
+
+                            </button>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+
+                <!-- STEP 3 -->
+
+                <div id="step3" style="display:none;">
+
+                    <div class="assessment-card">
+
+                        <h2 class="assessment-title">
+
+                            <span class="icon-mental">🧠</span>
+
+                            <span class="title-text">
+                                Mental Wellbeing
+                            </span>
+
+                        </h2>
+
+                        <p class="assessment-subtitle">
+
+                            Help us understand your wellness habits and focus levels.
+
+                        </p>
+
+                        <!-- Sleep Hours -->
+
+                        <div class="mb-4">
+
+                            <label class="form-label">
+
+                                Average Sleep Hours
+
+                            </label>
+
+                            <div class="slider-value">
+
+                                <span id="sleepValue">
+
+                                    7 Hours
+
+                                </span>
+
+                            </div>
+
+                            <input type="range" min="3" max="10" step="0.5" value="7" id="sleepHours" name="sleep_hours"
+                                class="form-range">
+
+                        </div>
+
+                        <!-- Stress Level -->
+
+                        <div class="mb-4">
+
+                            <label class="form-label">
+
+                                Current Stress Level (1-10)
+
+                            </label>
+
+                            <div class="slider-value">
+
+                                <span id="stressValue">
+
+                                    5
+
+                                </span>
+
+                            </div>
+
+                            <input type="range" min="1" max="10" value="5" id="stressLevel" name="stress"
+                                class="form-range">
+
+                        </div>
+
+                        <!-- Focus Score -->
+
+                        <div class="mb-4">
+
+                            <label class="form-label">
+
+                                Focus Score
+
+                            </label>
+
+                            <div class="slider-value">
+
+                                <span id="focusValue">
+
+                                    65
+
+                                </span>
+
+                            </div>
+
+                            <input type="range" min="30" max="99" value="65" id="focusScore" name="focus"
+                                class="form-range">
+
+                        </div>
+
+                        <div class="d-flex justify-content-between">
+
+                            <button type="button" class="prev-btn" onclick="nextStep(3,2)">
+
+                                ← Previous
+
+                            </button>
+
+                            <button type="button" class="next-btn" onclick="nextStep(3,4)">
+
+                                Next →
+
+                            </button>
+
+                        </div>
+
+                    </div>
+
+                </div>
+                <!-- STEP 4 -->
+
+                <div id="step4" style="display:none;">
+
+                    <div class="assessment-card">
+
+                        <h2 class="assessment-title">
+
+                            <span class="icon-digital">📱</span>
+
+                            <span class="title-text">
+
+                                Digital Lifestyle & Physical Health
+
+                            </span>
+
+                        </h2>
+
+                        <p class="assessment-subtitle">
+
+                            Tell us about your daily habits and lifestyle.
+
+                        </p>
+
+                        <!-- Phone Usage -->
+
+                        <div class="mb-4">
+
+                            <label class="form-label">
+
+                                Daily Phone Usage
+
+                            </label>
+
+                            <div class="slider-value">
+
+                                <span id="phoneValue">
+
+                                    4 Hours
+
+                                </span>
+
+                            </div>
+
+                            <input type="range" min="0.5" max="12" step="0.5" value="4" id="phoneUsage"
+                                name="phone_usage_hours" class="form-range">
+
+                        </div>
+
+                        <!-- Social Media -->
+
+                        <div class="mb-4">
+
+                            <label class="form-label">
+
+                                Social Media Usage (Hours)
+
+                            </label>
+
+                            <div class="slider-value">
+
+                                <span id="socialValue">
+
+                                    4 Hours
+
+                                </span>
+
+                            </div>
+
+                            <input type="range" min="0" max="8" step="0.1" value="4" id="socialMedia"
+                                name="social_media" class="form-range">
+
+                        </div>
+
+                        <!-- YouTube -->
+
+                        <div class="mb-4">
+
+                            <label class="form-label">
+
+                                YouTube Usage (Hours)
+
+                            </label>
+
+                            <div class="slider-value">
+
+                                <span id="youtubeValue">
+
+                                    3 Hours
+
+                                </span>
+
+                            </div>
+
+                            <input type="range" min="0" max="12" step="0.1" value="3" id="youtubeHours" name="youtube"
+                                class="form-range">
+
+                        </div>
+
+                        <!-- Gaming -->
+
+                        <div class="mb-4">
+
+                            <label class="form-label">
+
+                                Gaming Time (Hours)
+
+                            </label>
+
+                            <div class="slider-value">
+
+                                <span id="gamingValue">
+
+                                    2 Hours
+
+                                </span>
+
+                            </div>
+
+                            <input type="range" min="0" max="8" step="0.1" value="2" id="gamingHours" name="gaming"
+                                class="form-range">
+
+                        </div>
+
+                        <!-- Breaks -->
+
+                        <div class="mb-4">
+
+                            <label class="form-label">
+
+                                Study Breaks Per Day
+
+                            </label>
+
+                            <div class="slider-value">
+
+                                <span id="breakValue">
+
+                                    7 Breaks
+
+                                </span>
+
+                            </div>
+
+                            <input type="range" min="1" max="14" value="7" id="breaks" name="breaks_per_day"
+                                class="form-range">
+
+                        </div>
+
+                        <!-- Exercise -->
+
+                        <div class="mb-4">
+
+                            <label class="form-label">
+
+                                Exercise Minutes Per Day
+
+                            </label>
+
+                            <input type="number" min="0" max="119" value="30" name="exercise_minutes"
+                                class="form-control custom-input">
+
+                        </div>
+
+                        <!-- Coffee -->
+
+                        <div class="mb-4">
+
+                            <label class="form-label">
+
+                                Coffee Consumption
+
+                            </label>
+
+                            <select name="coffee" class="form-select custom-input">
+
+                                <option>None</option>
+                                <option>Low</option>
+                                <option selected>Moderate</option>
+                                <option>High</option>
+                                <option>Very High</option>
+
+                            </select>
+
+                        </div>
+
+                        <div class="d-flex justify-content-between">
+
+                            <button type="button" class="prev-btn" onclick="nextStep(4,3)">
+
+                                ← Previous
+
+                            </button>
+
+                            <button type="submit" class="next-btn">
+
+                                Analyze My Productivity 🚀
+
+                            </button>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </form>
+
+        </div>
+
+    </section>
+
+
+
+
+
+
+
+    <script src="{{ url_for('static', filename='js/script.js') }}"></script>
+
+    <script
+        src="{{ url_for('static', filename='bootstrap/bootstrap-5.3.8-dist/bootstrap-5.3.8-dist/js/bootstrap.bundle.min.js') }}"></script>
+
+</body>
+
+</html>

@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MindPulse AI</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <link rel="icon" type="image/png" href="{{ url_for('static', filename='images/logo.png') }}">
+    <link rel="stylesheet"
+        href="{{ url_for('static', filename='bootstrap/bootstrap-5.3.8-dist/bootstrap-5.3.8-dist/css/bootstrap.min.css') }}">
+</head>
+
+<body>
+    <!-- NAVBAR -->
+
+    <nav class="navbar navbar-expand-lg bg-white shadow-sm py-3">
+
+        <div class="container">
+
+            <!-- Logo -->
+
+            <a class="navbar-brand d-flex align-items-center" href="#">
+
+                <img src="{{ url_for('static', filename='images/logo.png') }}" alt="MindPulse AI" width="55" height="55"
+                    class="me-2">
+
+                <span class="fw-bold fs-3">
+                    MindPulse AI
+                </span>
+
+            </a>
+
+            <!-- Mobile Toggle -->
+
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#menu">
+
+                <span class="navbar-toggler-icon"></span>
+
+            </button>
+
+            <!-- Menu -->
+
+            <div class="collapse navbar-collapse" id="menu">
+
+                <!-- Center Links -->
+
+                <ul class="navbar-nav mx-auto">
+
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ url_for('home') }}">
+                            Home
+                        </a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link px-3" href="{{ url_for('home') }}#features">
+                            Features
+                        </a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link px-3" href="{{ url_for('assessment') }}">
+                            Assessment
+                        </a>
+                    </li>
+
+
+                </ul>
+
+                <!-- Right Buttons -->
+
+                <div class="d-flex">
+
+                    <a href="{{ url_for('login') }}" class="nav-login">
+
+                        Login
+
+                    </a>
+
+                    <a href="{{ url_for('signup') }}" class="nav-signup ms-2">
+
+                        Sign Up
+
+                    </a>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </nav>
+    <!-- login -->
+    <!DOCTYPE html>
+    <html lang="en">
+
+    <head>
+
+        <meta charset="UTF-8">
+
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+        <title>Login | MindPulse AI</title>
+
+        <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+
+    </head>
+
+    <body>
+
+        <div class="auth-container">
+
+            <div class="auth-card">
+
+                <img src="{{ url_for('static', filename='images/logo.png') }}" class="auth-logo">
+
+                <h2>Welcome Back 👋</h2>
+
+                <p>Login to continue your wellness journey.</p>
+                {% if error %}
+
+                <div class="alert alert-danger">
+
+                    {{ error }}
+
+                </div>
+
+                {% endif %}
+
+
+                <form action="/login" method="POST">
+
+                    <input type="text" name="username" placeholder="Username" required>
+
+                    <input type="password" name="password" placeholder="Password" required>
+
+                    <button type="submit">
+
+                        Login
+
+                    </button>
+
+                </form>
+
+                <p class="bottom-text">
+
+                    Don't have an account?
+
+                    <a href="{{ url_for('signup') }}">
+
+                        Sign Up
+
+                    </a>
+
+                </p>
+
+            </div>
+
+        </div>
+
+    </body>
+
+    </html>
+
+
+
+
+
+
+
+
+    <script
+        src="{{ url_for('static', filename='bootstrap/bootstrap-5.3.8-dist/bootstrap-5.3.8-dist/js/bootstrap.bundle.min.js') }}"></script>
+</body>
+
+</html>

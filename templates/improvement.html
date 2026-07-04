@@ -1,0 +1,386 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MindPulse AI</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <link rel="icon" type="image/png" href="{{ url_for('static', filename='images/logo.png') }}">
+    <link rel="stylesheet"
+        href="{{ url_for('static', filename='bootstrap/bootstrap-5.3.8-dist/bootstrap-5.3.8-dist/css/bootstrap.min.css') }}">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet">
+
+</head>
+
+<body>
+
+    <!-- NAVBAR -->
+
+    <nav class="navbar navbar-expand-lg bg-white shadow-sm py-3">
+
+        <div class="container">
+
+            <!-- Logo -->
+
+            <a class="navbar-brand d-flex align-items-center" href="{{ url_for('home') }}">
+
+                <img src="{{ url_for('static', filename='images/logo.png') }}" alt="MindPulse AI" width="55" height="55"
+                    class="me-2">
+
+                <span class="fw-bold fs-3">
+                    MindPulse AI
+                </span>
+
+            </a>
+
+            <!-- Mobile Toggle -->
+
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#dashboardMenu">
+
+                <span class="navbar-toggler-icon"></span>
+
+            </button>
+
+            <!-- Menu -->
+
+            <div class="collapse navbar-collapse" id="dashboardMenu">
+
+                <!-- Center Links -->
+
+                <ul class="navbar-nav mx-auto">
+
+                    <li class="nav-item">
+
+                        <a class="nav-link px-3" href="{{ url_for('home') }}">
+
+                            Home
+
+                        </a>
+
+                    </li>
+
+                    <li class="nav-item">
+
+                        <a class="nav-link px-3" href="{{ url_for('dashboard') }}">
+
+                            Dashboard
+
+                        </a>
+
+                    </li>
+
+                    <li class="nav-item">
+
+                        <a class="nav-link px-3" href="{{ url_for('improvement') }}">
+
+                            Improvement
+
+                        </a>
+
+                    </li>
+
+                    <li class="nav-item">
+
+                        <a class="nav-link px-3" href="{{ url_for('ai_coach') }}">
+
+                            AI Coach
+
+                        </a>
+
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link px-3" href="{{ url_for('logout') }}">
+                            Logout
+                        </a>
+                    </li>
+
+                </ul>
+
+            </div>
+
+        </div>
+
+    </nav>
+    <section class="whatif-section">
+
+        <!-- Heading -->
+
+        <div class="whatif-heading">
+
+            <h1>
+                Move the sliders. See your future.
+            </h1>
+
+            <p>
+                Explore how small habit changes can improve your productivity.
+            </p>
+
+        </div>
+
+        <!-- Main Simulator -->
+
+        <div class="whatif-container">
+
+            <!-- LEFT PANEL -->
+
+            <div class="simulator-left">
+
+                <h3>Adjust Your Habits</h3>
+
+                <div class="sliders-container">
+
+                    <!-- Sleep -->
+
+                    <div class="slider-group">
+
+                        <div class="slider-header">
+
+                            <label for="sleepSlider">
+                                Sleep Hours
+                            </label>
+
+                            <span id="sleepValue">
+                                {{ sleep_hours }} h
+                            </span>
+
+                        </div>
+
+                        <input type="range" min="4" max="10" value="{{ sleep_hours }}" id="sleepSlider">
+
+                    </div>
+
+                    <!-- Study -->
+
+                    <div class="slider-group">
+
+                        <div class="slider-header">
+
+                            <label for="studySlider">
+                                Study Hours
+                            </label>
+
+                            <span id="studyValue">
+                                {{ study_hours }} h
+                            </span>
+
+                        </div>
+
+                        <input type="range" min="1" max="12" value="{{ study_hours }}" id="studySlider">
+
+                    </div>
+
+                    <!-- Exercise -->
+
+                    <div class="slider-group">
+
+                        <div class="slider-header">
+
+                            <label for="exerciseSlider">
+                                Exercise Minutes
+                            </label>
+
+                            <span id="exerciseValue">
+                                {{ exercise_minutes }} min
+                            </span>
+
+                        </div>
+
+                        <input type="range" min="0" max="120" value="{{ exercise_minutes }}" id="exerciseSlider">
+
+                    </div>
+
+                    <!-- Phone Usage -->
+
+                    <div class="slider-group">
+
+                        <div class="slider-header">
+
+                            <label for="phoneSlider">
+                                Phone Usage
+                            </label>
+
+                            <span id="phoneValue">
+                                {{ phone_usage_hours }} h
+                            </span>
+
+                        </div>
+
+                        <input type="range" min="0" max="12" value="{{ phone_usage_hours }}" id="phoneSlider">
+
+                    </div>
+
+                    <!-- Focus -->
+
+                    <div class="slider-group">
+
+                        <div class="slider-header">
+
+                            <label for="focusSlider">
+                                Focus Score
+                            </label>
+
+                            <span id="focusValue">
+                                {{ focus }}
+                            </span>
+
+                        </div>
+
+                        <input type="range" min="0" max="100" value="{{ focus }}" id="focusSlider">
+
+                    </div>
+
+                </div>
+
+                <!-- Button -->
+
+                <button id="simulateBtn" class="simulate-btn">
+
+                    Simulate Future Score
+
+                </button>
+
+            </div>
+
+            <!-- RIGHT PANEL -->
+
+            <div class="simulator-right">
+
+                <!-- Current Score -->
+
+                <div class="current-card">
+
+                    <h4>
+                        CURRENT
+                    </h4>
+
+                    <h1 id="currentScore">
+                        {{ current_productivity }}
+                    </h1>
+
+                    <p>
+                        Productivity Score
+                    </p>
+
+                </div>
+
+                <!-- Predicted Score -->
+
+                <div class="predicted-card">
+
+                    <h4>
+                        PREDICTED
+                    </h4>
+
+                    <h1 id="predictedScore">
+                        --
+                    </h1>
+
+                    <p>
+                        Future Productivity Score
+                    </p>
+
+                    <span id="improvementGain">
+                    </span>
+
+                </div>
+                <div class="improvement-card">
+
+                    <h4>
+                        IMPROVEMENT GAIN
+                    </h4>
+
+                    <h1 id="improvementValue">
+                        --
+                    </h1>
+
+                    <p>
+                        Potential Growth
+                    </p>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+    <!-- Ai insights using gemini  -->
+    <div class="ai-grid">
+
+
+
+        <div class="ai-insights-card">
+
+            <div class="ai-header">
+                <h2> <img src="{{ url_for('static', filename='images/logo.png') }}" alt="MindPulse AI" class="ai-logo">
+                    AI Insights
+                </h2>
+                <p>Personalized analysis powered by MindPulse AI</p>
+                <button id="generateInsightsBtn" class="simulate-btn">
+
+                    Generate AI Insights
+
+                </button>
+            </div>
+
+            <div id="aiResponse" class="ai-content">
+
+                Click the button above to generate
+                personalized AI insights.
+
+            </div>
+
+        </div>
+
+
+        <!-- AI roadmap -->
+        <!-- AI Roadmap -->
+
+        <div class="ai-roadmap-card">
+
+            <div class="ai-header">
+
+                <h2>
+
+                    🗺 AI Roadmap
+
+                </h2>
+
+                <p>
+
+                    Personalized action plan powered by MindPulse AI
+
+                </p>
+
+                <button id="generateRoadmapBtn" class="simulate-btn">
+
+                    Generate AI Roadmap
+
+                </button>
+
+            </div>
+
+            <div id="roadmapResponse" class="ai-content">
+
+                Click the button above to generate
+                your personalized roadmap.
+
+            </div>
+
+        </div>
+    </div>
+
+    <script src="{{ url_for('static', filename='js/dashboard.js') }}"></script>
+
+
+    <script
+        src="{{ url_for('static', filename='bootstrap/bootstrap-5.3.8-dist/bootstrap-5.3.8-dist/js/bootstrap.bundle.min.js') }}"></script>
+
+
+</body>
+
+</html>

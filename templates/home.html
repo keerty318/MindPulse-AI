@@ -1,0 +1,651 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MindPulse AI</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <link rel="icon" type="image/png" href="{{ url_for('static', filename='images/logo.png') }}">
+    <link rel="stylesheet"
+        href="{{ url_for('static', filename='bootstrap/bootstrap-5.3.8-dist/bootstrap-5.3.8-dist/css/bootstrap.min.css') }}">
+</head>
+
+<body>
+
+    <!-- NAVBAR -->
+
+    <nav class="navbar navbar-expand-lg bg-white shadow-sm py-3">
+
+        <div class="container">
+
+            <!-- Logo -->
+
+            <a class="navbar-brand d-flex align-items-center" href="#">
+
+                <img src="{{ url_for('static', filename='images/logo.png') }}" alt="MindPulse AI" width="55" height="55"
+                    class="me-2">
+
+                <span class="fw-bold fs-3">
+                    MindPulse AI
+                </span>
+
+            </a>
+
+            <!-- Mobile Toggle -->
+
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#menu">
+
+                <span class="navbar-toggler-icon"></span>
+
+            </button>
+
+            <!-- Menu -->
+
+            <div class="collapse navbar-collapse" id="menu">
+
+                <!-- Center Links -->
+
+                <ul class="navbar-nav mx-auto">
+
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ url_for('home') }}">
+                            Home
+                        </a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link px-3" href="{{ url_for('home') }}#features">
+                            Features
+                        </a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link px-3" href="{{ url_for('assessment') }}">
+                            Assessment
+                        </a>
+                    </li>
+
+
+                </ul>
+
+                <!-- Right Buttons -->
+
+                <div class="d-flex">
+
+                    <a href="{{ url_for('login') }}" class="nav-login">
+
+                        Login
+
+                    </a>
+
+                    <a href="{{ url_for('signup') }}" class="nav-signup ms-2">
+
+                        Sign Up
+
+                    </a>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </nav>
+
+
+
+    <!-- HERO SECTION -->
+
+    <section id="home" class="hero">
+
+        <div class="container">
+
+            <div class="row align-items-center">
+
+                <!-- LEFT SIDE -->
+
+                <div class="col-lg-6">
+
+                    <h1 class="hero-title">
+
+                        Balance Productivity.
+                        <br>
+
+                        Protect Wellbeing.
+                        <br>
+
+                        Prevent Burnout.
+
+                    </h1>
+
+                    <p class="hero-subtitle">
+
+                        MindPulse AI helps students understand their
+                        productivity patterns, wellness habits,
+                        burnout risks, and growth opportunities
+                        through intelligent analytics.
+
+                    </p>
+
+                    <div class="hero-buttons">
+
+                        <a href="{{ url_for('assessment') }}" class="custom-btn-primary">
+
+                            Start Assessment
+
+                        </a>
+
+                        <a href="#features" class="custom-btn-secondary">
+
+                            Explore Features
+
+                        </a>
+
+                    </div>
+
+                </div>
+
+                <!-- RIGHT SIDE -->
+
+                <div class="col-lg-6 text-center">
+
+                    <img src="{{ url_for('static', filename='images/front_img.png') }}" alt="MindPulse AI"
+                        class="hero-image">
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+    <!-- WHY MINDPULSE AI SECTION -->
+
+    <section id="features" class="features-section">
+
+        <div class="container">
+
+            <!-- Section Heading -->
+
+            <div class="text-center mb-5">
+
+                <h2 class="features-title">
+
+                    Why MindPulse AI?
+
+                </h2>
+
+                <p class="features-subtitle">
+
+                    More than a productivity tracker —
+                    an intelligent platform designed to help
+                    students understand, improve, and grow.
+
+                </p>
+
+            </div>
+
+            <!-- Feature Cards Row -->
+
+            <div class="row g-4">
+
+                <!-- Card 1 -->
+
+                <div class="col-lg-3 col-md-6">
+
+                    <div class="feature-card">
+
+                        <div class="feature-icon">
+
+                            📈
+
+                        </div>
+
+                        <h4>
+
+                            Productivity Insights
+
+                        </h4>
+
+                        <p>
+
+                            Discover learning patterns and
+                            understand the habits that influence
+                            your productivity.
+
+                        </p>
+
+                    </div>
+
+                </div>
+
+                <!-- Card 2 -->
+
+                <div class="col-lg-3 col-md-6">
+
+                    <div class="feature-card">
+
+                        <div class="feature-icon">
+
+                            🌿
+
+                        </div>
+
+                        <h4>
+
+                            Wellness Intelligence
+
+                        </h4>
+
+                        <p>
+
+                            Track wellbeing factors such as
+                            sleep, stress, exercise, and study
+                            balance.
+
+                        </p>
+
+                    </div>
+
+                </div>
+
+                <!-- Card 3 -->
+
+                <div class="col-lg-3 col-md-6">
+
+                    <div class="feature-card">
+
+                        <div class="feature-icon">
+
+                            🔥
+
+                        </div>
+
+                        <h4>
+
+                            Burnout Detection
+
+                        </h4>
+
+                        <p>
+
+                            Identify warning signs early and
+                            receive actionable suggestions to
+                            stay on track.
+
+                        </p>
+
+                    </div>
+
+                </div>
+
+                <!-- Card 4 -->
+
+                <div class="col-lg-3 col-md-6">
+
+                    <div class="feature-card">
+
+                        <div class="feature-icon">
+
+                            🎯
+
+                        </div>
+
+                        <h4>
+
+                            Personalized Growth
+
+                        </h4>
+
+                        <p>
+
+                            Get tailored recommendations that
+                            help improve focus, wellness, and
+                            daily performance.
+
+                        </p>
+
+                    </div>
+
+                </div>
+                <!-- Card 5 -->
+
+                <div class="col-lg-3 col-md-6">
+
+                    <div class="feature-card">
+
+                        <div class="feature-icon">
+
+                            📱
+
+                        </div>
+
+                        <h4>
+
+                            Digital Wellness
+
+                        </h4>
+
+                        <p>
+
+                            Analyze phone usage,
+                            social media habits,
+                            gaming time, and screen
+                            distractions.
+
+                        </p>
+
+                    </div>
+
+                </div>
+
+                <!-- Card 6 -->
+
+                <div class="col-lg-3 col-md-6">
+
+                    <div class="feature-card">
+
+                        <div class="feature-icon">
+
+                            🧠
+
+                        </div>
+
+                        <h4>
+
+                            Student Persona
+
+                        </h4>
+
+                        <p>
+
+                            Discover your unique
+                            learning style and
+                            understand how you
+                            approach productivity.
+
+                        </p>
+
+                    </div>
+
+                </div>
+
+                <!-- Card 7 -->
+
+                <div class="col-lg-3 col-md-6">
+
+                    <div class="feature-card">
+
+                        <div class="feature-icon">
+
+                            🔄
+
+                        </div>
+
+                        <h4>
+
+                            What-If Simulator
+
+                        </h4>
+
+                        <p>
+
+                            Explore how changes in
+                            sleep, study habits, and
+                            distractions can impact
+                            productivity.
+
+                        </p>
+
+                    </div>
+
+                </div>
+
+                <!-- Card 8 -->
+
+                <div class="col-lg-3 col-md-6">
+
+                    <div class="feature-card">
+
+                        <div class="feature-icon">
+
+                            🚀
+
+                        </div>
+
+                        <h4>
+
+                            Smart Improvement Roadmap
+
+                        </h4>
+
+                        <p>
+
+                            Receive a personalized
+                            step-by-step action plan
+                            for continuous academic
+                            and personal growth.
+
+                        </p>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+    <!-- HOW PROJECT WORKS -->
+
+
+
+    <section class="flowchart-section">
+
+        <div class="container">
+
+            <h2 class="flow-title">
+
+                How MindPulse AI Works
+
+            </h2>
+
+            <!-- Step 1 -->
+
+            <div class="flow-step">
+
+                <div class="flow-icon">
+
+                    📝
+
+                </div>
+
+                <h3>
+
+                    Complete Assessment
+
+                </h3>
+
+                <p>
+
+                    Answer questions about your
+                    study habits, wellness,
+                    and daily routine.
+
+                </p>
+
+            </div>
+
+            <div class="flow-line"></div>
+
+            <!-- Step 2 -->
+
+            <div class="flow-step">
+
+                <div class="flow-icon">
+
+                    🧠
+
+                </div>
+
+                <h3>
+
+                    Intelligent Analysis
+
+                </h3>
+
+                <p>
+
+                    MindPulse AI analyzes
+                    your responses and
+                    identifies important patterns.
+
+                </p>
+
+            </div>
+
+            <div class="flow-line"></div>
+
+            <!-- Step 3 -->
+
+            <div class="flow-step">
+
+                <div class="flow-icon">
+
+                    📊
+
+                </div>
+
+                <h3>
+
+                    Explore Insights
+
+                </h3>
+
+                <p>
+
+                    View productivity,
+                    wellness, and burnout
+                    insights in one place.
+
+                </p>
+
+            </div>
+
+            <div class="flow-line"></div>
+
+            <!-- Step 4 -->
+
+            <div class="flow-step">
+
+                <div class="flow-icon">
+
+                    🚀
+
+                </div>
+
+                <h3>
+
+                    Improve & Grow
+
+                </h3>
+
+                <p>
+
+                    Follow personalized
+                    recommendations and
+                    track your progress.
+
+                </p>
+
+            </div>
+
+        </div>
+
+    </section>
+
+    <!-- assessment button  -->
+
+    <section class="cta-section">
+
+        <div class="container text-center">
+
+            <h2 class="cta-title">
+
+                Ready to Understand Yourself Better?
+
+            </h2>
+
+            <p class="cta-text">
+
+                Discover your productivity patterns,
+                wellness habits, and personalized
+                improvement opportunities with MindPulse AI.
+
+            </p>
+
+            <a href="{{ url_for('assessment') }}" class="cta-btn">
+
+                Start Your Assessment
+
+            </a>
+
+        </div>
+
+    </section>
+
+
+    <!-- footer -->
+
+    <footer class="footer">
+
+        <div class="container text-center">
+
+            <!-- Logo with text already inside image -->
+
+            <img src="{{ url_for('static', filename='images/logo.png') }}" alt="MindPulse AI Logo"
+                class="footer-logo-img">
+
+            <!-- Description -->
+
+            <p class="footer-text">
+
+                Helping students understand productivity,
+                wellness, and burnout patterns.
+
+            </p>
+
+            <!-- Footer Links -->
+
+            <div class="footer-links">
+
+                <a href="#home">Home</a>
+
+                <a href="#features">Features</a>
+
+                <a href="{{ url_for('assessment') }}">Assessment</a>
+
+            </div>
+
+            <hr>
+
+            <p class="footer-copy">
+
+                © 2026 MindPulse AI
+
+            </p>
+
+        </div>
+
+    </footer>
+
+    <script
+        src="{{ url_for('static', filename='bootstrap/bootstrap-5.3.8-dist/bootstrap-5.3.8-dist/js/bootstrap.bundle.min.js') }}"></script>
+
+</body>
+
+</html>
